@@ -14,3 +14,10 @@ venv.bak/
 *.csv
 .local/
 .DS_Store
+python-server.code-workspace
+openai-test.py
+sliike-openai-test.ipynb
+.ipynb_checkpoints/sliike-openai-test-checkpoint.ipynb
+.gitignore
+.jupyter/desktop-settings.json
+.jupyter/desktop-workspaces/default-37a8.jupyterlab-workspace
