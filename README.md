@@ -29,6 +29,7 @@ Sliike python apis
 MONGODB_URI
 DB_NAME
 API_KEY
+OPENAI_API_KEY
 
 ```
 
