@@ -8,6 +8,7 @@ from pydantic import ValidationError
 
 from app.api.v1.routes import api_router
 from app.config.connect_db import get_database
+from app.config.connect_openai import connect_OpenAI
 from app.middleware.api_key_auth import api_key_auth
 from app.middleware.error_handler import (
     http_exception_handler,
@@ -23,11 +24,15 @@ app = FastAPI()
 async def startup_event():
     # Initialize the database connection on startup
     app.db = get_database()
+    app.openAi_client = connect_OpenAI()
 
 @app.on_event("shutdown")
 async def shutdown_event():
     # Close the database connection on shutdown
     app.db.client.close()
+
+    # Close OpenAI's connection on shutdown
+    app.openAi_client.close()
 
 # Include the API key authentication as middleware
 app.middleware("http")(api_key_auth)
