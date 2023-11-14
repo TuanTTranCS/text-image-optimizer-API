@@ -18,7 +18,7 @@ class TextGenerationInput(BaseModel):
     }
 
 class TextGenerationOutput(BaseModel):
-    generated_texts: list[str] = Field(description="Generated text from the service. Provide multiple option for user")
+    generated_texts: list[str] = Field(description="Generated text from the service. Provide multiple options for user")
 
     model_config = {
         "json_schema_extra": {
