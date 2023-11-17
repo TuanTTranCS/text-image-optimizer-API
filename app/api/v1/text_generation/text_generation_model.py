@@ -53,13 +53,13 @@ class TextGenerator:
     def __init__(self, input_text:str, user:str|None=None):
         self.input_text = input_text
         self.openai_client = connect_OpenAI()
-        self.openai_model = getenv('TEXT_OPTIMIZER_MODEL') # OpenAI's chat completion model
+        self.openai_model = getenv('TEXT_OPTIMIZER_MODEL', default='gpt-3.5-turbo-1106') # OpenAI's chat completion model
         self.n_choices = int(getenv('TEXT_OPTIMIZER_CHOICES', default=2)) # number of suggestions provide as output
         self.temperature = float(getenv('TEXT_OPTIMIZER_TEMPERATURE', default=1.3)) # Level of creativeness of the response
-        self.max_output_tokens = int(getenv('TEXT_OPTIMIZER_MAX_TOKENS', default=200))
-        self.prompt = getenv('TEXT_OPTIMIZER_PROMPT').format(self.n_choices)
+        self.max_output_tokens = int(getenv('TEXT_OPTIMIZER_MAX_TOKENS', default=200)) # Control max generate tokens
+        self.prompt = getenv('TEXT_OPTIMIZER_PROMPT').format(self.n_choices) # Prompt message as system guider 
         logger.debug(self.prompt)
-        self.max_prompt_tokens = int(getenv('TEXT_OPTIMIZER_MAX_PROMPT_TOKEN', default=125))
+        self.max_prompt_tokens = int(getenv('TEXT_OPTIMIZER_MAX_PROMPT_TOKEN', default=125)) # Internal control on total prompt tokens
         self.user = user
         self.messages = [
                     {"role": "system", "content": self.prompt},
