@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(override=True)
 from fastapi.exceptions import HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
@@ -24,7 +24,7 @@ app = FastAPI()
 async def startup_event():
     # Initialize the database connection on startup
     app.db = get_database()
-    app.openAi_client = connect_OpenAI()
+    # app.openAi_client = connect_OpenAI()
 
 @app.on_event("shutdown")
 async def shutdown_event():
@@ -32,7 +32,7 @@ async def shutdown_event():
     app.db.client.close()
 
     # Close OpenAI's connection on shutdown
-    app.openAi_client.close()
+    # app.openAi_client.close()
 
 # Include the API key authentication as middleware
 app.middleware("http")(api_key_auth)

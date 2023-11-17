@@ -4,3 +4,5 @@ pymongo
 pydantic
 python-dotenv
 openai
+nltk
+tiktoken

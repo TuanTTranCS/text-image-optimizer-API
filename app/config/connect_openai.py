@@ -4,6 +4,9 @@ from os import getenv
 OPENAI_CLIENT = None
 
 def connect_OpenAI():
+    """
+    Setup authentication to OpenAI's API client 
+    """
     global OPENAI_CLIENT
     if OPENAI_CLIENT is None:
         # Provide OpenAI's API KEY to connect to OpenAI's API using openai package

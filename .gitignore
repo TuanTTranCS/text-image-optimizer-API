@@ -16,7 +16,7 @@ venv.bak/
 .DS_Store
 python-server.code-workspace
 openai-test.py
-sliike-openai-test.ipynb
+*.ipynb
 .ipynb_checkpoints/sliike-openai-test-checkpoint.ipynb
 .gitignore
 .jupyter/desktop-settings.json

@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Response
 from .text_generation_model import TextGenerationInput, TextGenerationOutput
 from .text_generation_service import generate_text_service
 
