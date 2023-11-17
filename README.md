@@ -50,6 +50,7 @@ python server.py
 **For MacOS Only**
 python3 server.py
 ```
+* ***Note***: If the pip command failed to instal the tiktoken package due to missing the Rust compiler, please follow the instruction to download and install it [here](https://www.rust-lang.org/tools/install). 
 
 Open [http://localhost:8080](http://localhost:8080) to see the server running.
 The reload=True argument allows the server to restart automatically upon changes to the code.
