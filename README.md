@@ -19,6 +19,7 @@ Sliike python apis
 
 <!-- TODO: Add docs link -->
 
+
 ## Developer guide
 
 - [Applied Coding developer guide](https://github.com/Applied-Coding/Developer-Guide/blob/main/BACKEND.md)
@@ -31,8 +32,11 @@ DB_NAME
 API_KEY
 OPENAI_API_KEY
 OPENAI_ORGANIZATION_ID
-TEXT_OPTIMIZER_PROMPT
+OPENAI_TEXT_GEN_PROMPT
 
+COHERE_API_KEY
+COHERE_TEXT_GEN_PROMPT
+COHERE_CLIENT_NAME
 ```
 ### Optional variable in .env file contents (they already have default values defined in model):
 ```
@@ -44,6 +48,8 @@ TEXT_OPTIMIZER_TEMPERATURE
 TEXT_OPTIMIZER_MAX_TOKENS
 TEXT_OPTIMIZER_PROMPT
 TEXT_OPTIMIZER_MAX_RETRY
+
+
 ```
 
 ## PIP
