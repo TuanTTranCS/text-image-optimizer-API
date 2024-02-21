@@ -41,6 +41,9 @@ COHERE_CLIENT_NAME
 AWS_DEFAULT_REGION
 AWS_PROFILE
 ANTHROPIC_TEXT_GEN_PROMPT
+
+STABILITY_HOST
+STABILITY_API_KEY
 ```
 ### Optional variable in .env file contents (they already have default values defined in model):
 ```

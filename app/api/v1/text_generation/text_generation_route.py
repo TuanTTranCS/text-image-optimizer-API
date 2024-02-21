@@ -1,5 +1,5 @@
 from typing import Annotated
-from fastapi import APIRouter, Response, Query, Body
+from fastapi import APIRouter, Query, Body
 from .text_generation_model import TextGenerationInput, TextGenerationOutput, apiSource
 from .text_generation_service import generate_text_service
 

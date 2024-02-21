@@ -14,6 +14,7 @@ from anthropic_bedrock import HUMAN_PROMPT, AI_PROMPT
 
 from app.utils.logger import get_logger
 from app.utils.token_helper import token_counter, token_counter_cohere, token_counter_bedrock
+from app.utils.execution_record import execution_time_record
 from app.config.connect_openai import connect_OpenAI
 from app.config.connect_cohere import connect_Cohere
 from app.config.connect_bedrock import connect_Bedrock
@@ -184,6 +185,7 @@ class TextGenerator:
         """
         
         try:
+            start_time = datetime.now()
             completion = self.client.chat.completions.create(
             model=self.model,
             messages=self.messages,
@@ -193,6 +195,9 @@ class TextGenerator:
             user=self.user if self.user is not None else 'user123',
             response_format={"type": "json_object"}
             )
+            finish_time = datetime.now()
+            execution_time_ms = (finish_time - start_time).total_seconds() * 1000
+
             logger.info("OpenAI's Response:")
             logger.info(completion)
             # Retrieve finish reason for handling response from API call 
@@ -204,13 +209,19 @@ class TextGenerator:
             completion_tokens_count = completion.usage.completion_tokens # generated message's token count
             prompt_tokens_count = completion.usage.prompt_tokens # total input + prompt token count
             created_timestamp = completion.created # Unix timestamp
-            db_record = {'created_timestamp': datetime.fromtimestamp(created_timestamp), 'user': self.user,
+            db_record = {'created_timestamp': datetime.fromtimestamp(created_timestamp), 
+                         'task': "text_optimization",
+                         'api_source': self.api_source,
+                         'model': self.model,
+                         'user': self.user,
                          'input_messages': self.messages,
+                         'execution_time_ms': execution_time_ms,
                          'prompt_tokens_count': prompt_tokens_count, 'completion_tokens_count': completion_tokens_count,
                          'generated_texts': completion.choices[0].message.content,
                          'finish_reason': [finish_reason]}
             logger.info(db_record)
-        
+            execution_time_record(db_record)
+
             if finish_reason == OpenAIFinishReason.stop.name:
                 generated_texts = json.loads(completion.choices[0].message.content)['messages']
                 if len(generated_texts) == self.n_choices:
@@ -275,6 +286,7 @@ class TextGenerator:
 
         """
         try:
+            start_time = datetime.now()
             cohere_generate_response = self.client.generate(
                 model=self.model,
                 prompt=self.messages[0],
@@ -284,6 +296,10 @@ class TextGenerator:
                 k=0,
                 stop_sequences=[],
                 return_likelihoods='NONE')
+            
+            finish_time = datetime.now()
+            execution_time_ms = (finish_time - start_time).total_seconds() * 1000
+
             logger.info("Cohere's Response:")
             logger.info(cohere_generate_response)
             
@@ -293,13 +309,19 @@ class TextGenerator:
             # future's DB record & analysis purpose     
             completion_tokens_count = cohere_generate_response.meta['billed_units']['output_tokens'] # generated message's token count
             prompt_tokens_count = cohere_generate_response.meta['billed_units']['input_tokens'] # total input + prompt token count
-            created_timestamp = datetime.now()
-            db_record = {'created_timestamp': created_timestamp, 'user': self.user,
+            created_timestamp = start_time
+            db_record = {'created_timestamp': created_timestamp, 
+                         'task': "text_optimization",
+                         'api_source': self.api_source,
+                         'model': self.model,
+                         'user': self.user,
                          'input_messages': self.messages,
+                         'execution_time_ms': execution_time_ms,
                          'prompt_tokens_count': prompt_tokens_count, 'completion_tokens_count': completion_tokens_count,
                          'generated_texts': [generation.text for generation in cohere_generate_response.generations],
                          'finish_reason': finish_reasons}
             logger.info(db_record)
+            execution_time_record(db_record)
 
             if all([finish_reason == CohereFinishReason.COMPLETE for finish_reason in finish_reasons]):
                 return [response.text.split("```")[1].replace('\n','') for response in cohere_generate_response.generations \
@@ -362,7 +384,7 @@ class TextGenerator:
 
         """
         try:
-            pass
+            
             request_body = json.dumps({"prompt": self.messages[0],
                    "max_tokens_to_sample": self.max_output_tokens,
                    "temperature": self.temperature,
@@ -370,7 +392,7 @@ class TextGenerator:
                    })
             accept = "application/json"
             contentType = "application/json"
-
+            start_time = datetime.now()
             response = self.client.invoke_model(
                 body=request_body, modelId=self.model, 
                 accept=accept, 
@@ -378,6 +400,9 @@ class TextGenerator:
               
             )
 
+            finish_time = datetime.now()
+            execution_time_ms = (finish_time - start_time).total_seconds() * 1000
+            
             logger.info("Anthropic's Response:")
             logger.info(response)
             response_body = json.loads(response.get("body").read())
@@ -389,12 +414,18 @@ class TextGenerator:
             completion_tokens_count = int(response['ResponseMetadata']['HTTPHeaders']['x-amzn-bedrock-output-token-count']) # generated message's token count
             prompt_tokens_count = int(response['ResponseMetadata']['HTTPHeaders']['x-amzn-bedrock-input-token-count']) # total input + prompt token count
             created_timestamp = parser.parse(response['ResponseMetadata']['HTTPHeaders']['date'])
-            db_record = {'created_timestamp': created_timestamp, 'user': self.user,
+            db_record = {'created_timestamp': created_timestamp, 
+                         'task': "text_optimization",
+                         'api_source': self.api_source,
+                         'model': self.model,
+                         'user': self.user,
                          'input_messages': self.messages,
+                         'execution_time_ms': execution_time_ms,
                          'prompt_tokens_count': prompt_tokens_count, 'completion_tokens_count': completion_tokens_count,
                          'generated_texts': [response_body['completion']],
                          'finish_reason': [finish_reason]}
-
+            
+            execution_time_record(db_record)
             logger.info(db_record)
 
             if finish_reason == AnthropicFinishReason.stop_sequence:
