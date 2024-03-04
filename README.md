@@ -94,11 +94,15 @@ In order to run the Anthropic model(s) on AWS Bedrock, need to perform the follo
 
 ## Running the development server
 
+**_Notes_:** The environment was tested using Python 3.11.8. Using a higher Python version might cause error during installing some packages.
+
 ```bash
 pip install -r requirements.txt
 python server.py
+```
 
 **For MacOS Only**
+```bash
 python3 server.py
 ```
 * ***Note***: If the pip command failed to instal the tiktoken package due to missing the Rust compiler, please follow the instruction to download and install it [here](https://www.rust-lang.org/tools/install). 
