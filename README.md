@@ -4,7 +4,13 @@ Sliike python apis
 
 ## Features
 
-- AI Text generation
+- AI Text generation / Optimization using:
+        - OpenAI's API
+        - Cohere's API
+        - Anthropic's API through AWS Bedrock
+
+- AI Image optimization using CLAID.AI's API:
+        - Image upscaling
 
 ## Tech Stack
 
@@ -14,11 +20,14 @@ Sliike python apis
 - [MongoDB](https://www.mongodb.com/)
 - [PyMongo](https://pymongo.readthedocs.io/en/stable/)
 - [PyDantic](https://docs.pydantic.dev/latest/)
+- [Amazon BedRock](https://docs.aws.amazon.com/bedrock/)
 
 ## Docs:
 
 <!-- TODO: Add docs link -->
-
+While the server is running, the documentation page for the API endpoint can be found at: 
+- Swagger UI: [http://localhost:8080/docs](http://localhost:8080/docs)
+- ReDoc UI: [http://localhost:8080/redoc](http://localhost:8080/redoc)
 
 ## Developer guide
 
@@ -97,4 +106,3 @@ python3 server.py
 Open [http://localhost:8080](http://localhost:8080) to see the server running.
 The reload=True argument allows the server to restart automatically upon changes to the code.
 
-The documentation page for the API endpoint can be found at [http://localhost:8080/docs](http://localhost:8080/docs) while the server is running.
