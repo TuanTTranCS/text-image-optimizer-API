@@ -15,6 +15,7 @@ venv.bak/
 *.yml
 *.xlsx
 .local/
+static/*
 .DS_Store
 python-server.code-workspace
 *-test.py

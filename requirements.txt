@@ -12,4 +12,3 @@ botocore
 anthropic_bedrock
 langchain
 transformers
-stability-sdk

@@ -42,8 +42,7 @@ AWS_DEFAULT_REGION
 AWS_PROFILE
 ANTHROPIC_TEXT_GEN_PROMPT
 
-STABILITY_HOST
-STABILITY_API_KEY
+CLAID_API_KEY
 ```
 ### Optional variable in .env file contents (they already have default values defined in model):
 ```
@@ -57,6 +56,8 @@ TEXT_OPTIMIZER_TEMPERATURE
 ANTHROPIC_TEXT_GEN_TEMPERATURE
 TEXT_OPTIMIZER_MAX_TOKENS
 TEXT_OPTIMIZER_MAX_RETRY
+CLAID_API_HOST
+IMAGES_PATH
 ```
 
 ## PIP
@@ -96,4 +97,4 @@ python3 server.py
 Open [http://localhost:8080](http://localhost:8080) to see the server running.
 The reload=True argument allows the server to restart automatically upon changes to the code.
 
-The documentation page for the API endpoint can be found at [http://localhost:8080/docs](http://localhost:8080/docs) while the server is running
+The documentation page for the API endpoint can be found at [http://localhost:8080/docs](http://localhost:8080/docs) while the server is running.
