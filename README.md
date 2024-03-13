@@ -1,6 +1,7 @@
 # TEXT/IMAGE OPTIMIZATION REST API PYTHON SERVER
 
-Python server to host REST API endpoints to provice text and image input optimization services with AI.
+Python server to host REST API endpoints to provice text and image input optimization services with AI. This is a part of the project during my apprenticeship for [Sliike App](https://www.sliike.com). For IP concerns, all of the API keys and prompts are stored in the `.env` file and are not pushed to GitHub.
+ 
 
 ## Features
 
@@ -51,7 +52,7 @@ While the server is running, the documentation page for the API endpoint can be 
 
 ## Developer guide
 
-- [Applied Coding developer guide](https://github.com/Applied-Coding/Developer-Guide/blob/main/BACKEND.md)
+- [Applied Coding developer guide (no public access)](https://github.com/Applied-Coding/Developer-Guide/blob/main/BACKEND.md)
 
 ## Required .env file contents
 
