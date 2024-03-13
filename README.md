@@ -1,16 +1,21 @@
-# SLIIKE PYTHON SERVER
+# TEXT/IMAGE OPTIMIZATION REST API PYTHON SERVER
 
-Sliike python apis
+Python server to host REST API endpoints to provice text and image input optimization services with AI.
 
 ## Features
 
-- AI Text generation / Optimization using:
-        - OpenAI's API
-        - Cohere's API
-        - Anthropic's API through AWS Bedrock
+### 1. AI Text Generation/Optimization using: - OpenAI's API - Cohere's API - Anthropic's API through AWS Bedrock
 
-- AI Image optimization using CLAID.AI's API:
-        - Image upscaling
+* **Input validation**:
+i. Text length limit (in characters)
+ii. Input tokens limit (in tokens)
+iii. Input words' meaninglessness: deny request if all words in the input are meaningless in English
+
+* **Output**:
+i. Configurable number of output choices count
+ii. Validated output format to meet json schema
+
+### 2. AI Image Optimization using CLAID.AI's API: Image upscaling
 
 ## Tech Stack
 
