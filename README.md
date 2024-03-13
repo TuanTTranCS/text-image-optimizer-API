@@ -9,12 +9,15 @@ Python server to host REST API endpoints to provice text and image input optimiz
 * **Input validation**:
 
 i. Text length limit (in characters)
+
 ii. Input tokens limit (in tokens)
+
 iii. Input words' meaninglessness: deny request if all words in the input are meaningless in English
 
 * **Output**:
 
 i. Configurable number of output choices count
+
 ii. Validated output format to meet json schema
 
 ### 2. AI Image Optimization using CLAID.AI's API: Image upscaling
