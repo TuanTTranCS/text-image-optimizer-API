@@ -3,3 +3,12 @@ uvicorn
 pymongo
 pydantic
 python-dotenv
+openai
+nltk
+tiktoken
+cohere
+boto3
+botocore
+anthropic_bedrock
+langchain
+transformers
