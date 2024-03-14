@@ -29,7 +29,7 @@ Python server to host REST API endpoints to provice text and image input optimiz
 
 ### 2. AI Image Optimization using CLAID.AI's API: 
 
-* Image feeatures: 
+* Image features: 
 
   - Image upscaling
 
@@ -42,6 +42,8 @@ Python server to host REST API endpoints to provice text and image input optimiz
 - [PyMongo](https://pymongo.readthedocs.io/en/stable/)
 - [PyDantic](https://docs.pydantic.dev/latest/)
 - [Amazon BedRock](https://docs.aws.amazon.com/bedrock/)
+- [Postman](https://www.postman.com/) *(optional, to validate API requests and responses)*
+
 
 ## Docs:
 
