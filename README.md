@@ -1,6 +1,6 @@
 # TEXT/IMAGE OPTIMIZATION REST API PYTHON SERVER
 
-Python server to host REST API endpoints to provide text and image input optimization services with Generative AI. This is a part of the project during my apprenticeship for [Sliike App](https://www.sliike.com). For IP concerns, all the API keys and prompts are stored in the `.env` file and are not pushed to GitHub.
+Python server to host REST API endpoints to provide text and image input optimization services with Generative AI. This is a part of the project during my apprenticeship for [Sliike App](https://www.sliike.com).
  
 
 ## Features
@@ -57,6 +57,8 @@ While the server is running, the documentation page for the API endpoint can be 
 - [Applied Coding developer guide (no public access)](https://github.com/Applied-Coding/Developer-Guide/blob/main/BACKEND.md)
 
 ## Required .env file contents
+
+Refer to the file `.env.example` for more details
 
 ```
 MONGODB_URI
@@ -133,3 +135,11 @@ python3 server.py
 Open [http://localhost:8080](http://localhost:8080) to see the server running.
 The reload=True argument allows the server to restart automatically upon changes to the code.
 
+## Examples
+
+* Text generation happy path:
+![Text Generation Happy Path](images/text-opt-postman_happy-path.png)
+
+* Image upscale happy path:
+![Image upscale demo](images/image-opt-demo.png)
+![Image upscale API call](images/image-opt-postman_happy-path.png)
