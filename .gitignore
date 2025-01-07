@@ -25,5 +25,5 @@ conda_env_export.py
 .gitignore
 .jupyter/desktop-settings.json
 .jupyter/desktop-workspaces/default-37a8.jupyterlab-workspace
-images/*
+# images/*
 test_init/*.txt
